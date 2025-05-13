@@ -1,0 +1,169 @@
+/* Image Gallery */
+.gallery-container{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.gallery-container img{
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3 ease;
+}
+
+.gallery-container img:hover{
+    transform: scale(1.1);
+}
+
+/* General Styles */
+body{
+    font-family: 'Poppins, sans-serif';
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ff6347;
+    color: white;
+    padding: 20px;
+}
+
+.menu-toggle{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Navigation Styles */
+.nav-menu{
+    background-color: #333;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-menu a{
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover{
+    background-color: #ff6347;
+    border-radius: 5px;
+}
+
+/* Responsive Menu */
+@media screen and (max-width: 768px) {
+    .nav-menu{
+        flex-direction: column;
+        display: none;
+    }
+
+    .nav-menu a{
+        display: block;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .nav-menu.active{
+        display: flex;
+    }
+}
+
+/* Sections */
+section{
+    padding: 40px;
+    background-color: white;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#order{
+    padding: 40px;
+    background-color: #fff3e0;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form label{
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form select, form input{
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#total-price{
+    font-size: 18px;
+    color: #ff6347;
+}
+
+/* Form Styling */
+form{
+    background-color: #fff3e0;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: left;
+}
+
+form label{
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input{
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button{
+    background-color: #ff6347;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover{
+    background-color: #e5533d;
+}
+
+/* Footer */
+footer{
+    background-color: #ff6347;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+}
