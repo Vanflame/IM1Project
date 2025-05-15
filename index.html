@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Skibidi Bites</title>
     <link rel="stylesheet" href="home-style.css">
 </head>
+
 <body>
 
     <section id="hero">
@@ -16,19 +18,20 @@
         </div>
     </section>
 
-    <script>   
+    <script>
         function enterSite() {
             document.body.style.opacity = "0"; // Fade out effect
             setTimeout(() => {
-                window.location.href = "skibidi-bites.html"; // Navigates to main site
+                window.location.href = "home.html"; // Navigates to main site
             }, 500); // Delay for smooth transition
         }
 
         // Fade-in effect on page load
-        window.onload = function() {
+        window.onload = function () {
             document.body.classList.add("loaded");
         };
     </script>
 
 </body>
+
 </html>
