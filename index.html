@@ -4,34 +4,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Skibidi Bites</title>
-    <link rel="stylesheet" href="home-style.css">
+    <title>Skibid Bites</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <nav class="nav-pin">
 
-    <section id="hero">
-        <div class="overlay">
-            <h1>Welcome to Skibidi Bites</h1>
-            <p>Unang Kagat, I Miss You Agad!</p>
-            <button onclick="enterSite()" class="fade-button">Enter Website</button>
+        <header>
+            <div class="logo"><img src="image/logo.png" alt=""></div>
+            <button class="menu-toggle">&#9776;</button>
+        </header>
+
+        <nav class="nav-menu">
+            <a class="hover" onclick="showSection('home')" href="#">Home</a>
+            <a class="hover" onclick="showSection('about')" href="#">About Us</a>
+            <a class="hover" onclick="showSection('service')" href="#">Services</a>
+            <a class="hover" onclick="showSection('service')" href="#contact">Contact</a>
+            <a class="hover" onclick="showSection('order-now')" href="#">Order Now</a>
+            <a class="book_now" onclick="showSection('book-now')" href="#">Book Now</a>
+        </nav>
+    </nav>
+
+    <div id="home" class="section">
+        <div class="food_image">
+            <div class="food_image_text">
+                <h1> <span class="yellow">Top Picks </span> here at Quick Bites</h1>
+            </div>
+            <div class="masking_blur">
+                <div class="chicken"><img src="image/burger.png" alt=""></div>
+                <div class="fries"><img src="image/chicken.png" alt=""></div>
+                <div class="burger"><img src="image/fries.png" alt=""></div>
+            </div>
+            <div class="button">
+                <h2 type="" class="button_getnow"><a href="">Buy Now</a></h2>
+            </div>
+
+        </div>
+        <div class="ndpage">
+            <h2>Fresh, Tasty, & Made with Love</h2>
+            <p>Explore our delicious menu and enjoy an amazing food experience.</p>
+        </div>
+
+    </div>
+    <div id="about" class="section hidden">
+        <div class="about-container">
+            <h1>Welcome to <span class="yellow">Quick Bites</span> Fast, Fresh, Flavorful!</h1>
+            <h4>At <span class="yellow">Quick Bites </span>, we believe great food should be quick, delicious, and
+                unforgettable! Whether you're craving a juicy
+                burger, crispy fries, or a refreshing shake, we've got you covered with flavors that hit the spot.
+
+                Our ingredients are fresh, our service is fast, and every bite is made with love. Whether you're dining
+                in, grabbing a
+                takeaway, or ordering online, we ensure quality and taste in every meal.
+
+                So go ahead treat yourself to a quick, tasty experience. Because at Quick Bites, fast food doesn't mean
+                compromising on flavor!</h4>
+        </div>
+    </div>
+
+    <div id="service" class="section hidden">
+        <div class="service-inner">
+            <h1>Our <span class="yellow">Services</span> </h1>
+            <div>
+                <div><img src="svg/dining.svg" alt=""></div>
+                <h3> Dine-in Experience </h3>
+                <div><img src="svg/catering.svg" alt=""></div>
+                <h3>Food Catering</h3>
+                <div><img src="svg/delivery.svg" alt=""></div>
+                <h3>Delivery Service</h3>
+            </div>
+
+            <h5 class="service-h5-text">
+                <h4>
+                    <class>Need</class> more details? <span class="yellow">Contact us</span> for bookings, bulk orders,
+                    or special requests!
+                </h4>
+            </h5>
+            <div class="only-flex" id="contact">
+                <div><img src="svg/call.svg" alt="">
+                    <h5><span class="yellow">Phone:</span> +63 900 123 4567</h5>
+                </div>
+                <div><img src="svg/email.svg" alt="">
+                    <h5><span class="yellow">Email:</span> contact@quickbites.com</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="order-now" class="section hidden">
+        <div class="innerblur">
+            <div class="innerblur1">
+                <h2><span class="yellow"> Order </span> Your Favorite Food</h2>
+                <form id="order-form">
+                    <label for="food-item">Select Food:</label>
+                    <select id="food-item" onchange="calculateTotal()">
+                        <option value="Burger" data-price="200">QB Burger ₱200</option>
+                        <option value="Fries" data-price="350">QB Fries ₱350</option>
+                        <option value="Chicken" data-price="450">QB Chicken ₱450</option>
+                    </select><br>
+
+                    <label for="quantity">Quantity:</label>
+                    <input placeholder="Enter Quantity" value="1" type="number" id="quantity" min="0"
+                        onchange="calculateTotal()"><br>
+
+                    <p>Total Price: <strong id="total-price">₱200</strong></p>
+
+                    <button id="order-now-submit" type="submit">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="book-now" class="section hidden">
+        <div class="innerblur">
+            <div class="innerblur1">
+                <h2><span class="yellow">Book</span> a Table</h2>
+                <form>
+                    <label>Name:</label><input placeholder="Enter your name" type="text" required><br>
+                    <label>Email:</label><input placeholder="Enter your email" type="email" required><br>
+                    <label>Date:</label><input placeholder="Enter the date" type="date" required><br>
+                    <label>Guests:</label><input placeholder="Enter your Guest" type="number" required><br>
+                    <button id="book-now-submit" type="submit">Book Now</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--<section id="gallery">
+        <h2>Our Delicious Foods</h2>
+        <div class="gallery-container">
+            <img src="image/1.jpg" alt="Delicious Dish 1">
+            <img src="image/2.jpg" alt="Delicious Dish 2">
+            <img src="image/3.jpg" alt="Delicious Dish 3">
         </div>
     </section>
 
+    <section id="home">
+        <h2>Fresh, Tasty, & Made with Love</h2>
+        <p>Explore our delicious menu and enjoy an amazing food experience.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Us</p>
+            <p>We are passionate about food and dedicated to serving the best flavor to our customers.</p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Dine-in Experience</li>
+            <li>Food Catering</li>
+            <li>Delivery Service</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@Skibidibites.com | Phone: +63 900 123 4567</p>
+    </section>-->
+
+    <footer>
+        <p>&copy; 2025 Quick Bites. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
     <script>
-        function enterSite() {
-            document.body.style.opacity = "0"; // Fade out effect
-            setTimeout(() => {
-                window.location.href = "home.html#"; // Navigates to main site
-            }, 500); // Delay for smooth transition
+        function showSection(sectionId) {
+            let allSections = document.querySelectorAll('.section');
+
+            allSections.forEach(section => {
+                section.classList.add('hidden'); // Hide all sections
+                section.style.display = "none"; // Ensure they don't take up space
+            });
+
+            let activeSection = document.getElementById(sectionId);
+            activeSection.classList.remove('hidden'); // Remove hidden class
+            activeSection.style.display = "block"; // Make it visible
+
+
         }
 
-        // Fade-in effect on page load
+        // Run the function on page load to display Home by default
         window.onload = function () {
-            document.body.classList.add("loaded");
+            showSection('home');
         };
     </script>
-
 </body>
 
 </html>
