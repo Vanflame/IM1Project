@@ -122,12 +122,13 @@
         <div class="innerblur">
             <div class="innerblur1">
                 <h2><span class="yellow">Book</span> a Table</h2>
-                <form>
-                    <label>Name:</label><input placeholder="Enter your name" type="text" required><br>
-                    <label>Email:</label><input placeholder="Enter your email" type="email" required><br>
-                    <label>Date:</label><input placeholder="Enter the date" type="date" required><br>
-                    <label>Guests:</label><input placeholder="Enter your Guest" type="number" required><br>
-                    <button id="book-now-submit" type="submit">Book Now</button>
+                <form id="book-form">
+                    <label>Name:</label><input id="name" placeholder="Enter your name" type="text" required><br>
+                    <label>Email:</label><input id="email" placeholder="Enter your email" type="email" required><br>
+                    <label>Date:</label><input id="date" placeholder="Enter the date" type="date" required><br>
+                    <label>Total Guest:</label><input id="guests" placeholder="Enter the total Guest" type="number"
+                        required><br>
+                    <button id="book-now-submit" onclick="book_save()" type="submit">Book Now</button>
                 </form>
             </div>
         </div>

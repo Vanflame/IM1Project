@@ -21,6 +21,16 @@ document.getElementById("order-form").addEventListener("submit", function (event
     alert(`Order placed successfully!\nName: ${orderName} \nFood: ${foodItem}\nQuantity: ${quantity}\nTotal: ${totalPrice}`);
 });
 
+document.getElementById("book-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let date = document.getElementById("date").value;
+    let guests = document.getElementById("guests").value;
+
+    alert(`Booking created successfully!\nName: ${name} \nEmail: ${email}\nDate: ${date}\nTotal Guest: ${guests}`);
+});
+
 function showSection(sectionId) {
     let allSections = document.querySelectorAll('.section');
 

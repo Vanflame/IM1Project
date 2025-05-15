@@ -47,4 +47,28 @@ function order_save() {
         }).catch(error => {
             console.error("Error saving order:", error);
         });
+
+
+}
+
+document.getElementById("book-now-submit").addEventListener("click", book_save);
+
+
+function book_save() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let date = document.getElementById("date").value;
+    let guests = document.getElementById("guests").value;
+
+    set(ref(db, 'Booking/' + name), {
+        Name: name,
+        Email: email,
+        Date: date,
+        Guests: guests
+    })
+        .then(() => {
+            console.log("Booking created successfully!");
+        }).catch(error => {
+            console.error("Error creating booking:", error);
+        });;
 }
