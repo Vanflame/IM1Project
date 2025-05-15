@@ -95,21 +95,22 @@
     <div id="order-now" class="section hidden">
         <div class="innerblur">
             <div class="innerblur1">
-                <h2>Order Your Favorite Food</h2>
+                <h2><span class="yellow"> Order </span> Your Favorite Food</h2>
                 <form id="order-form">
                     <label for="food-item">Select Food:</label>
                     <select id="food-item" onchange="calculateTotal()">
-                        <option value="Burger" data-price="200">Skibidi Burger ₱200</option>
-                        <option value="Fries" data-price="350">Skibidi Fries ₱350</option>
-                        <option value="Chicken" data-price="450">Skibidi Chicken ₱450</option>
+                        <option value="Burger" data-price="200">QB Burger ₱200</option>
+                        <option value="Fries" data-price="350">QB Fries ₱350</option>
+                        <option value="Chicken" data-price="450">QB Chicken ₱450</option>
                     </select><br>
 
                     <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" value="0" min="0" onchange="calculateTotal()"><br>
+                    <input placeholder="Enter Quantity" value="1" type="number" id="quantity" min="0"
+                        onchange="calculateTotal()"><br>
 
                     <p>Total Price: <strong id="total-price">₱200</strong></p>
 
-                    <button type="submit">Place Order</button>
+                    <button id="order-now-submit" type="submit">Place Order</button>
                 </form>
             </div>
         </div>
@@ -119,10 +120,10 @@
             <div class="innerblur1">
                 <h2><span class="yellow">Book</span> a Table</h2>
                 <form>
-                    <label>Name:</label><input type="text" required><br>
-                    <label>Email:</label><input type="email" required><br>
-                    <label>Date:</label><input type="date" required><br>
-                    <label>Guests:</label><input type="number" required><br>
+                    <label>Name:</label><input placeholder="Enter your name" type="text" required><br>
+                    <label>Email:</label><input placeholder="Enter your email" type="email" required><br>
+                    <label>Date:</label><input placeholder="Enter the date" type="date" required><br>
+                    <label>Guests:</label><input placeholder="Enter your Guest" type="number" required><br>
                     <button id="book-now-submit" type="submit">Book Now</button>
                 </form>
             </div>
