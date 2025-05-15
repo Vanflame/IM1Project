@@ -407,6 +407,7 @@ footer {
 #order-now label {
     margin-bottom: 1rem;
     font-weight: 600;
+    margin-top: 1rem;
 }
 
 #order-now input {
