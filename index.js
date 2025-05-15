@@ -18,41 +18,40 @@ const db = getDatabase(app);
 
 
 document.getElementById("order-now-submit").addEventListener("click", order_save);
+document.getElementById("book-now-submit").addEventListener("click", book_save);
 
 
 function order_save() {
-
-
     var item = document.getElementById('food-item');
-    let selectedOption = item.options[item.selectedIndex]; // Corrected foodItem reference
+    let selectedOption = item.options[item.selectedIndex];
     let foodName = selectedOption.value;
     let foodPrice = selectedOption.getAttribute("data-price");
-    var total = document.getElementById('total-price').innerText;
     var quantity = document.getElementById('quantity').value;
     var name = document.getElementById('orderName').value;
 
+    let totalPrice = foodPrice * quantity;
 
-
-    console.log("order_save function is running!");
-
-    set(ref(db, 'Orders/' + name), {
+    let orderData = {
+        Type: "Order",
         Name: name,
         FoodName: foodName,
         Price: foodPrice,
         Quantity: quantity,
-        Total: (foodPrice * quantity)
-    })
-        .then(() => {
-            console.log("Order saved successfully!");
-        }).catch(error => {
-            console.error("Error saving order:", error);
-        });
+        Total: totalPrice
+    };
 
+    console.log("order_save function is running!");
 
+    // 🔥 Save to Firebase
+    set(ref(db, 'Orders/' + name), orderData)
+        .then(() => console.log("Order saved successfully in Firebase!"))
+        .catch(error => console.error("Error saving order in Firebase:", error));
+
+    // 🔥 Send to Google Sheets
+    sendToGoogleSheets(orderData);
 }
 
-document.getElementById("book-now-submit").addEventListener("click", book_save);
-
+// ✅ Book Save Function - Firebase & Google Sheets
 
 function book_save() {
     let name = document.getElementById("name").value;
@@ -60,15 +59,40 @@ function book_save() {
     let date = document.getElementById("date").value;
     let guests = document.getElementById("guests").value;
 
-    set(ref(db, 'Booking/' + name), {
+    let bookingData = {
+        Type: "Booking",
         Name: name,
         Email: email,
         Date: date,
         Guests: guests
-    })
-        .then(() => {
-            console.log("Booking created successfully!");
-        }).catch(error => {
-            console.error("Error creating booking:", error);
-        });;
+    };
+
+    console.log("book_save function is running!");
+
+    // 🔥 Save to Firebase
+    set(ref(db, 'Booking/' + name), bookingData)
+        .then(() => console.log("Booking saved successfully in Firebase!"))
+        .catch(error => console.error("Error saving booking in Firebase:", error));
+
+    // 🔥 Send to Google Sheets
+    sendToGoogleSheets(bookingData);
 }
+
+// ✅ Universal Function to Send Data to Google Sheets
+function sendToGoogleSheets(data) {
+    let formData = new FormData();
+
+    for (let key in data) {
+        formData.append(key, data[key]); // Append all key-value pairs dynamically
+    }
+
+    fetch("https://script.google.com/macros/s/AKfycbxSTf1E8oF4XnPcV-66k_RfuPiIzNbuFmBo2ETvCN7Xxz-su3CA8Emm3UOIW8N0zz8XGw/exec", {
+        method: "POST",
+        body: formData
+    })
+        .then(response => response.text())
+        .then(data => console.log("Data sent to Google Sheets:", data))
+        .catch(error => console.error("Error sending data to Google Sheets:", error));
+}
+
+
