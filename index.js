@@ -28,16 +28,32 @@ function order_save() {
     let foodPrice = selectedOption.getAttribute("data-price");
     var quantity = document.getElementById('quantity').value;
     var name = document.getElementById('orderName').value;
+    let now = new Date();
+
+    //formatting time
+    let formattedTime = now.getHours().toString().padStart(2, '0') + ":" +
+        now.getMinutes().toString().padStart(2, '0') + ":" +
+        now.getSeconds().toString().padStart(2, '0');
+
+    // formatting date
+    let formattedDate = (now.getMonth() + 1).toString().padStart(2, '0') + "/" +
+        now.getDate().toString().padStart(2, '0') + "/" +
+        now.getFullYear();
+
+
 
     let totalPrice = foodPrice * quantity;
 
     let orderData = {
+        Datestamp: formattedDate,
+        Timestamp: formattedTime,
         Type: "Order",
         Name: name,
         FoodName: foodName,
         Price: foodPrice,
         Quantity: quantity,
         Total: totalPrice
+
     };
 
     console.log("order_save function is running!");
@@ -47,8 +63,6 @@ function order_save() {
         .then(() => console.log("Order saved successfully in Firebase!"))
         .catch(error => console.error("Error saving order in Firebase:", error));
 
-    // 🔥 Send to Google Sheets
-    sendToGoogleSheets(orderData);
 }
 
 // ✅ Book Save Function - Firebase & Google Sheets
@@ -58,41 +72,38 @@ function book_save() {
     let email = document.getElementById("email").value;
     let date = document.getElementById("date").value;
     let guests = document.getElementById("guests").value;
+    let now = new Date();
+
+    //formatting time
+    let formattedTime = now.getHours().toString().padStart(2, '0') + ":" +
+        now.getMinutes().toString().padStart(2, '0') + ":" +
+        now.getSeconds().toString().padStart(2, '0');
+
+    // formatting date
+    let formattedDate = (now.getMonth() + 1).toString().padStart(2, '0') + "/" +
+        now.getDate().toString().padStart(2, '0') + "/" +
+        now.getFullYear();
+
+    //formatting date entry from elementid ('date')
+    let dateParts = date.split("-");
+    let entrydate = `${dateParts[1]}/${dateParts[2]}/${dateParts[0]}`;
 
     let bookingData = {
+        Datestamp: formattedDate,
+        Timestamp: formattedTime,
         Type: "Booking",
         Name: name,
         Email: email,
-        Date: date,
-        Guests: guests
+        Date: entrydate,
+        Guests: guests,
     };
 
     console.log("book_save function is running!");
 
-    // 🔥 Save to Firebase
     set(ref(db, 'Booking/' + name), bookingData)
         .then(() => console.log("Booking saved successfully in Firebase!"))
         .catch(error => console.error("Error saving booking in Firebase:", error));
 
-    // 🔥 Send to Google Sheets
-    sendToGoogleSheets(bookingData);
-}
-
-// ✅ Universal Function to Send Data to Google Sheets
-function sendToGoogleSheets(data) {
-    let formData = new FormData();
-
-    for (let key in data) {
-        formData.append(key, data[key]); // Append all key-value pairs dynamically
-    }
-
-    fetch("https://script.google.com/macros/s/AKfycbxSTf1E8oF4XnPcV-66k_RfuPiIzNbuFmBo2ETvCN7Xxz-su3CA8Emm3UOIW8N0zz8XGw/exec", {
-        method: "POST",
-        body: formData
-    })
-        .then(response => response.text())
-        .then(data => console.log("Data sent to Google Sheets:", data))
-        .catch(error => console.error("Error sending data to Google Sheets:", error));
 }
 
 
