@@ -45,6 +45,7 @@ function order_save() {
     let totalPrice = foodPrice * quantity;
 
     let orderData = {
+        DateandTimestamp: formattedDate + formattedTime,
         Datestamp: formattedDate,
         Timestamp: formattedTime,
         Type: "Order",
@@ -89,6 +90,7 @@ function book_save() {
     let entrydate = `${dateParts[1]}/${dateParts[2]}/${dateParts[0]}`;
 
     let bookingData = {
+        DateandTimestamp: formattedDate + formattedTime,
         Datestamp: formattedDate,
         Timestamp: formattedTime,
         Type: "Booking",
