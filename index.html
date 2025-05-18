@@ -18,12 +18,12 @@
         </header>
 
         <nav class="nav-menu">
-            <a class="hover" onclick="showSection('home')" href="#">Home</a>
-            <a class="hover" onclick="showSection('about')" href="#">About Us</a>
-            <a class="hover" onclick="showSection('service')" href="#">Services</a>
-            <a class="hover" onclick="showSection('service')" href="#contact">Contact</a>
-            <a class="hover" onclick="showSection('order-now')" href="#">Order Now</a>
-            <a class="book_now" onclick="showSection('book-now')" href="#">Book Now</a>
+            <a class="hover hide" onclick="showSection('home')" href="#">Home</a>
+            <a class="hover hide" onclick="showSection('about')" href="#">About Us</a>
+            <a class="hover hide" onclick="showSection('service')" href="#">Services</a>
+            <a class="hover hide" onclick="showSection('service')" href="#contact">Contact</a>
+            <a class="hover hide" onclick="showSection('order-now')" href="#">Order Now</a>
+            <a class="book_now hide hover" onclick="showSection('book-now')" href="#">Book Now</a>
         </nav>
     </nav>
 
@@ -74,14 +74,16 @@
                 <h3>Food Catering</h3>
                 <div><img src="svg/delivery.svg" alt=""></div>
                 <h3>Delivery Service</h3>
+                <h5 class="service-h5-text">
+                    <h4>
+                        <class>Need</class> more details? <span class="yellow">Contact us</span> for bookings, bulk
+                        orders,
+                        or special requests!
+                    </h4>
+                </h5>
             </div>
 
-            <h5 class="service-h5-text">
-                <h4>
-                    <class>Need</class> more details? <span class="yellow">Contact us</span> for bookings, bulk orders,
-                    or special requests!
-                </h4>
-            </h5>
+
             <div class="only-flex" id="contact">
                 <div><img src="svg/call.svg" alt="">
                     <h5><span class="yellow">Phone:</span> +63 900 123 4567</h5>

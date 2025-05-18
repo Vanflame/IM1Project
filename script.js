@@ -2,6 +2,13 @@ document.querySelector(".menu-toggle").addEventListener("click", function () {
     document.querySelector(".nav-menu").classList.toggle("active");
 });
 
+document.querySelectorAll(".hover").forEach(item => {
+    item.addEventListener("click", function () {
+        document.querySelector(".nav-menu").classList.remove("active");
+    });
+});
+
+
 function calculateTotal() {
     let foodItem = document.getElementById("food-item");
     let selectedOption = foodItem.options[foodItem.selectedIndex];

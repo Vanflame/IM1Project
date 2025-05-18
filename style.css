@@ -242,7 +242,6 @@ footer {
 
 }
 
-.button {}
 
 .button_getnow a {
     text-decoration: none;
@@ -502,4 +501,209 @@ footer {
 
 }
 
+.button_getnow a:hover {
+    background-color: var(--yellow-hover);
+
+}
+
 /*section end*/
+
+
+/* for image res */
+
+@media (max-width: 1280px) {
+
+    header {
+        height: 3rem;
+    }
+
+    .logo img {
+        height: 5rem;
+        width: 5rem;
+    }
+
+    .food_image {
+        height: 100vh;
+
+
+    }
+
+    .masking_blur div img {
+        width: 25rem;
+        height: 25rem;
+
+    }
+
+    #about {}
+
+    .about-container {
+        height: 87vh;
+    }
+
+    #service {
+        height: 120vh;
+        padding-top: 1rem;
+    }
+
+    .service-inner {
+        height: 107vh;
+    }
+
+    #order-now .innerblur {
+        height: 130vh;
+
+    }
+
+    #order-now .innerblur1 {
+        padding: 4rem;
+        height: 30rem;
+        width: 20rem;
+    }
+
+    #order-now input {
+        width: 9rem;
+        padding: 1rem 2.5rem;
+    }
+
+    #book-now .innerblur {
+        height: 130vh;
+    }
+
+    #book-now .innerblur1 {
+        padding: 4rem;
+        height: 30rem;
+        width: 20rem;
+
+    }
+
+    #book-now input {
+        width: 9rem;
+        padding: 1rem 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    header {
+        margin-top: 2.6rem;
+    }
+
+    .food_image {
+        padding-top: 1rem;
+        height: 55rem;
+    }
+
+    .food_image_text {
+        margin-bottom: 7rem;
+        margin-top: 9rem;
+        width: 70%;
+
+    }
+
+    .masking_blur {
+        flex-direction: column;
+        display: flex;
+        height: 70rem;
+
+
+    }
+
+    .masking_blur div img {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 2rem;
+    }
+
+    .button {}
+
+    .button_getnow a {
+        margin-top: -8rem;
+        margin-left: 0;
+        position: relative;
+        padding: 1rem 2rem;
+        font-size: 0.8rem;
+    }
+
+    .ndpage {
+        height: 30vh;
+    }
+
+    .ndpage h2 {
+        font-size: 1.3rem;
+
+    }
+
+    .ndpage p {
+        font-size: 0.9rem;
+        width: 80%;
+    }
+
+    footer {
+        font-size: 70%;
+        position: relative;
+
+    }
+
+    #about h4 {
+        width: 80%;
+        font-size: 1rem;
+    }
+
+    #about h1 {
+        font-size: 1.5rem;
+        width: 80%;
+    }
+
+    .about-container {
+        height: 85vh;
+        margin-top: -2rem;
+    }
+
+    #about {
+        height: 85vh;
+
+    }
+
+
+    .service-h5-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .service-inner {
+        height: 120vh;
+        margin-top: 3rem;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+
+    }
+
+    #service .only-flex {
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    #order {
+        height: 50vh;
+    }
+
+    #order-now .innerblur {
+        padding-top: 4;
+        height: 95vh;
+    }
+
+    #book {
+        height: 50vh;
+    }
+
+    #book-now .innerblur {
+        padding-top: 4;
+        height: 95vh;
+    }
+
+
+
+}
