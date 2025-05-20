@@ -511,10 +511,10 @@ footer {
 
 /* for image res */
 
-@media (max-width: 1280px) {
+@media (max-width: 1480px) {
 
     header {
-        height: 3rem;
+        height: 4rem;
     }
 
     .logo img {
@@ -582,7 +582,18 @@ footer {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1240px) {
+    .masking_blur div img {
+        width: 15rem;
+        height: 15rem;
+
+    }
+
+}
+
+@media (max-width: 760px) {}
+
+@media (max-width: 760px) {
 
     header {
         margin-top: 2.6rem;
