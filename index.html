@@ -23,7 +23,8 @@
             <a class="hover hide" onclick="showSection('service')" href="#">Services</a>
             <a class="hover hide" onclick="showSection('service')" href="#contact">Contact</a>
             <a class="hover hide" onclick="showSection('order-now')" href="#">Order Now</a>
-            <a class="book_now hide hover" onclick="showSection('book-now')" href="#">Book Now</a>
+            <a class="hide hover" onclick="showSection('book-now')" href="#">Book Now</a>
+            <a class="track hide hover" onclick="showSection('track')" href="#">Track Orders & Bookings</a>
         </nav>
     </nav>
 
@@ -116,7 +117,8 @@
 
                     <p>Total Price: <strong id="total-price">₱45</strong></p>
 
-                    <button id="order-now-submit" onclick="order_save()" type="submit">Place Order</button>
+                    <button id="order-now-submit" type="submit">Place Order</button>
+
                 </form>
             </div>
         </div>
@@ -126,22 +128,85 @@
             <div class="innerblur1">
                 <h2><span class="yellow">Book</span> a Table</h2>
                 <form id="book-form">
-                    <label>Name:</label><input id="name" placeholder="Enter your name" type="text" required><br>
-                    <label>Email:</label><input id="email" placeholder="Enter your email" type="email" required><br>
-                    <label>Date:</label><input id="date" placeholder="Enter the date" type="date" required><br>
-                    <label>Total Guest:</label><input id="guests" placeholder="Enter the total Guest" type="number"
+                    <label>Name:</label><input id="booking-name" placeholder="Enter your name" type="text" required><br>
+                    <label>Email:</label><input id="booking-email" placeholder="Enter your email" type="email"
                         required><br>
-                    <button id="book-now-submit" onclick="book_save()" type="submit">Book Now</button>
+                    <label>Date:</label><input id="booking-date" placeholder="Enter the date" type="date" required><br>
+                    <label>Total Guest:</label><input id="booking-guests" placeholder="Enter the total Guest"
+                        type="number" required><br>
+                    <button id="book-now-submit" type="submit">Book Now</button>
                 </form>
             </div>
         </div>
     </div>
+    <div id="track" class="section hidden">
+        <div class="innerblur">
+            <div class="innerblur1">
+                <h2><span class="yellow">Track</span> orders & bookings</h2>
+                <form action>
+                    <label for="idtrack">OrderID or BookingID:</label>
+                    <input placeholder="e.g Q*000123" type="text" id="idtrack">
+                    <button class="trackbutton_book" style="display: none;" id="track-button" type="button">Search
+                        booking</button>
+                    <button class="trackbutton_order" style="display: none;" id="track-button-order"
+                        type="button">Search order</button>
+                </form>
+                <div class="booking_data">
+                    <h3>Date: <span id="track-booking-date"></span></h3>
+                    <h3>Time: <span id="track-booking-time"></span></h3>
+                    <h3>BookingID: <span id="track-booking-bookingid"></span></h3>
+                    <h3>Name: <span id="track-booking-name"></span></h3>
+                    <h3>Email: <span id="track-booking-email"></span></h3>
+                    <h3>Date Booked: <span id="track-booking-date-booked"></span></h3>
+                    <h3>Total Guest: <span id="track-booking-guest"></span></h3>
+                    <h3>Type: <span id="track-booking-type"></span></h3>
+                    <h3>Last Save Date: <span id="track-booking-last-save-date"></span></h3>
+                    <h3>Last Save Time: <span id="track-booking-last-save-time"></span></h3>
+                </div>
+                <div class="buttonEdits" style="display: none;">
+                    <a id="edit-button">Edit</a>
+                    <a id="save-button">Save</a>
+                    <a id="delete-button">Delete</a>
+                </div>
+                <div class="order_data">
+                    <h3>Date: <span id="track-order-date"></span></h3>
+                    <h3>Time: <span id="track-order-time"></span></h3>
+                    <h3>OrderID: <span id="track-order-orderid"></span></h3>
+                    <h3>Name: <span id="track-order-name"></span></h3>
+                    <h3>Item: <span id="track-order-item"></span></h3>
+                    <h3>Price: <span id="track-order-price"></span></h3>
+                    <h3>Quantity: <span id="track-order-quantity"></span></h3>
+                    <h3>Total: <span id="track-order-total"></span></h3>
+                    <h3>Type: <span id="track-order-type"></span></h3>
+                    <h3>Last Save Date: <span id="track-order-last-save-date"></span></h3>
+                    <h3>Last Save Time: <span id="track-order-last-save-time"></span></h3>
+                </div>
+                <div class="buttonEdits-order">
+                    <a id="delete-button-order">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Popup for Booking and Order Confirmation -->
+    <div id="confirmationModal" class="modal"
+        style="display:none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div class="modal-content"
+            style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 400px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+            <span id="closeModal"
+                style="color: #aaa; float: right; font-size: 24px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2 id="modalTitle" style="margin-top: 0; font-size: 20px;">Confirmation</h2>
+            <div id="modalBody" style="margin-top: 10px; font-size: 14px; white-space: pre-wrap;"></div>
+            <button id="modalCloseButton"
+                style="margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+
     <footer>
         <p>&copy; 2025 Quick Bites. All Rights Reserved.</p>
     </footer>
 </body>
-<script src="https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.7.3/firebase-database.js"></script>
 <script type="module" src="index.js"></script>
 <script src="script.js" defer></script>
 

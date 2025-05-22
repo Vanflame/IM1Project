@@ -25,35 +25,35 @@ document.getElementById("order-form").addEventListener("submit", function (event
     let totalPrice = document.getElementById("total-price").innerText;
     let orderName = document.getElementById('orderName').value;
 
-    alert(`Order placed successfully!\nName: ${orderName} \nFood: ${foodItem}\nQuantity: ${quantity}\nTotal: ${totalPrice}`);
+    //
 });
 
 document.getElementById("book-form").addEventListener("submit", function (event) {
     event.preventDefault();
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let date = document.getElementById("date").value;
-    let guests = document.getElementById("guests").value;
+    let name = document.getElementById("booking-name").value;
+    let email = document.getElementById("booking-email").value;
+    let date = document.getElementById("booking-date").value;
+    let guests = document.getElementById("booking-guests").value;
 
-    alert(`Booking created successfully!\nName: ${name} \nEmail: ${email}\nDate: ${date}\nTotal Guest: ${guests}`);
+
 });
 
 function showSection(sectionId) {
     let allSections = document.querySelectorAll('.section');
 
     allSections.forEach(section => {
-        section.classList.add('hidden'); // Hide all sections
-        section.style.display = "none"; // Ensure they don't take up space
+        section.classList.add('hidden');
+        section.style.display = "none";
     });
 
     let activeSection = document.getElementById(sectionId);
-    activeSection.classList.remove('hidden'); // Remove hidden class
-    activeSection.style.display = "block"; // Make it visible
+    activeSection.classList.remove('hidden');
+    activeSection.style.display = "block";
 
 
 }
 
-// Run the function on page load to display Home by default
+
 window.onload = function () {
     showSection('home');
 };

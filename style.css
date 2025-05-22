@@ -108,12 +108,12 @@ header {
     border-radius: 8rem;
 }
 
-.book_now {
+.track {
     background-color: var(--book-now-color);
     border-radius: 1rem;
 }
 
-.book_now:hover {
+.track:hover {
     background-color: var(--book-now-hover);
     border-radius: 1rem;
 
@@ -508,6 +508,159 @@ footer {
 
 /*section end*/
 
+/* section start */
+#track .innerblur {
+    background-color: var(--background-color);
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding-top: 8rem;
+    display: flex;
+    color: var(--white-primary-text);
+    background-image: url(image/fastfood.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#track h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+#track .innerblur1 {
+    padding: 3rem 6rem 13rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    height: 34rem;
+    border-radius: 2rem;
+
+
+}
+
+#track form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#track label {
+    margin-bottom: 1rem;
+    font-weight: 600;
+
+}
+
+#track input {
+    border-radius: 5rem;
+    padding: 1rem 2rem;
+    width: 12rem;
+}
+
+#track #track-button,
+#track-button-order {
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    background-color: var(--yellow);
+    color: var(--black-primary-text);
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1rem;
+
+}
+
+#edit-button,
+#save-button,
+#delete-button {
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    background-color: var(--yellow);
+    color: var(--black-primary-text);
+    font-weight: 600;
+    border: 0.5px solid var(--black-primary-text);
+    font-size: 0.8rem;
+    cursor: pointer;
+
+}
+
+#track #track-button:hover,
+#track-button-order:hover {
+    background-color: var(--yellow-hover);
+}
+
+#edit-button:hover,
+#save-button:hover,
+#delete-button:hover {
+    background-color: var(--yellow-hover);
+}
+
+#track #save-button {
+    display: none;
+}
+
+.booking_data {
+    color: var(--white-primary-text);
+    background-color: rgb(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    border: 3px solid rgba(247, 247, 247, 0.048);
+    height: 37vh;
+    width: 20rem;
+    text-align: start;
+    padding: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    display: none;
+}
+
+.booking_data span {
+    font-size: 0.8rem;
+    color: var(--yellow);
+}
+
+.order_data span {
+    font-size: 0.8rem;
+    color: var(--yellow);
+}
+
+
+.order_data {
+    display: none;
+    color: var(--white-primary-text);
+    background-color: rgb(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    border: 3px solid rgba(247, 247, 247, 0.048);
+    height: 39.5vh;
+    width: 20rem;
+    text-align: start;
+    padding: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    display: none;
+}
+
+#delete-button-order {
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    background-color: var(--yellow);
+    color: var(--black-primary-text);
+    font-weight: 600;
+    border: 0.5px solid var(--black-primary-text);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+#delete-button-order:hover {
+    background-color: var(--yellow-hover);
+}
+
+.buttonEdits-order {
+    display: none;
+}
+
+/* section end */
+
 
 /* for image res */
 
@@ -534,7 +687,6 @@ footer {
 
     }
 
-    #about {}
 
     .about-container {
         height: 87vh;
@@ -591,7 +743,6 @@ footer {
 
 }
 
-@media (max-width: 760px) {}
 
 @media (max-width: 760px) {
 
@@ -624,8 +775,6 @@ footer {
         height: 10rem;
         border-radius: 2rem;
     }
-
-    .button {}
 
     .button_getnow a {
         margin-top: -8rem;
@@ -715,6 +864,21 @@ footer {
         height: 95vh;
     }
 
+
+    .booking_data,
+    .order_data {
+        height: 45vh;
+        width: 70%;
+    }
+
+    #track .innerblur {
+        height: 110vh;
+    }
+
+    #track .innerblur1 {
+        padding: 3rem 6rem 17rem;
+        margin-top: -8rem;
+    }
 
 
 }

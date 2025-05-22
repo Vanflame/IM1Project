@@ -20,13 +20,13 @@
 
     <script>
         function enterSite() {
-            document.body.style.opacity = "0"; // Fade out effect
+            document.body.style.opacity = "0";
             setTimeout(() => {
-                window.location.href = "home.html#"; // Navigates to main site
-            }, 500); // Delay for smooth transition
+                window.location.href = "home.html#";
+            }, 500);
         }
 
-        // Fade-in effect on page load
+
         window.onload = function () {
             document.body.classList.add("loaded");
         };
