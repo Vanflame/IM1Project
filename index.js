@@ -118,7 +118,7 @@ document.getElementById("track-button-order").addEventListener("click", () => {
 //         Type: "Edited Orders",
 //         Name: name,
 //         FoodName: foodName,
-//         Price: newfoodPrice,
+//         Price: newfoodPrice, 
 //         Quantity: newQuantity,
 //         Total: totalPrice
 //     }).then(() => {
@@ -134,7 +134,7 @@ document.getElementById("delete-button-order").addEventListener("click", () => {
     delete_order(uniqueID);
 });
 
-function showModal(title, message) {
+function showModal(title, messageHTML) {
     const modal = document.getElementById("confirmationModal");
     const modalTitle = document.getElementById("modalTitle");
     const modalBody = document.getElementById("modalBody");
@@ -153,8 +153,22 @@ function showModal(title, message) {
     }
 
     modalTitle.textContent = title;
-    modalBody.textContent = message;
+    modalBody.innerHTML = messageHTML;
     modal.style.display = "block";
+
+    // Add event listeners for copy buttons inside modalBody
+    const copyButtons = modalBody.querySelectorAll(".copy-button");
+    copyButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const targetId = button.getAttribute("data-target-id");
+            const textToCopy = document.getElementById(targetId).textContent;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert(`Copied: ${textToCopy}`);
+            }).catch(err => {
+                alert("Failed to copy text: " + err);
+            });
+        });
+    });
 
     function closeHandler() {
         modal.style.display = "none";
@@ -174,7 +188,6 @@ function showModal(title, message) {
     window.addEventListener("click", outsideClickHandler);
 }
 
-// 🛒 Place Order Function with 5-Second Restriction
 function order_save() {
     console.log("order called");
     var item = document.getElementById('food-item');
@@ -209,7 +222,7 @@ function order_save() {
                 let timeDifference = (now - lastOrderTimestamp) / 1000; // Convert to seconds
 
                 if (timeDifference < 30) { // Prevent orders within 5 seconds
-                    showModal("Error", `You can only place an order every 5 seconds!\nWait ${(5 - timeDifference).toFixed(1)} seconds.`);
+                    showModal("Error", `You can only place an order every 5 seconds!<br>Wait ${(5 - timeDifference).toFixed(1)} seconds.`);
                     return;
                 }
             }
@@ -236,7 +249,16 @@ function order_save() {
 
         set(orderRef, orderData)
             .then(() => {
-                let message = `Order placed successfully\nOrder ID: ${uniqueID}\nName: ${name}\nFood: ${foodName}\nQuantity: ${quantity}\nTotal: ${totalPrice}`;
+                let message = `
+                    Order placed successfully<br>
+                    Order ID: <span id="order-id" class="highlight-id">${uniqueID}</span>
+                    <button class="copy-button" data-target-id="order-id">Copy</button><br>
+                    Name: ${name}<br>
+                    Food: ${foodName}<br>
+                    Quantity: ${quantity}<br>
+                    Total: ${totalPrice}<br>
+                    <div class="copy-reminder">Please copy and save your Order ID for your reference.</div>
+                `;
                 console.log(message);
                 showModal("Order Confirmation", message);
             })
@@ -409,7 +431,16 @@ function book_save() {
 
     set(ordersRef, bookingData)
         .then(() => {
-            let message = `Booking created successfully\nName: ${name}\nOrder ID: ${uniqueID}\nEmail: ${email}\nDate Booked: ${entrydate}\nTotal Guests: ${guests}`;
+            let message = `
+                Booking created successfully<br>
+                Booking ID: <span id="booking-id" class="highlight-id">${uniqueID}</span>
+                <button class="copy-button" data-target-id="booking-id">Copy</button><br>
+                Name: ${name}<br>
+                Email: ${email}<br>
+                Date Booked: ${entrydate}<br>
+                Total Guests: ${guests}<br>
+                <div class="copy-reminder">Please copy and save your Booking ID for your reference.</div>
+            `;
             console.log(message);
             showModal("Booking Confirmation", message);
             track_booking(uniqueID);
