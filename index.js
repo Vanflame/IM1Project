@@ -162,8 +162,9 @@ function showModal(title, messageHTML) {
         button.addEventListener("click", () => {
             const targetId = button.getAttribute("data-target-id");
             const textToCopy = document.getElementById(targetId).textContent;
+            const copied = document.getElementById("copied");
             navigator.clipboard.writeText(textToCopy).then(() => {
-                alert(`Copied: ${textToCopy}`);
+                copied.innerHTML = "Copied!"
             }).catch(err => {
                 alert("Failed to copy text: " + err);
             });
@@ -252,7 +253,7 @@ function order_save() {
                 let message = `
                     Order placed successfully<br>
                     Order ID: <span id="order-id" class="highlight-id">${uniqueID}</span>
-                    <button class="copy-button" data-target-id="order-id">Copy</button><br>
+                    <button class="copy-button" data-target-id="order-id" id="copied">Copy</button><br>
                     Name: ${name}<br>
                     Food: ${foodName}<br>
                     Quantity: ${quantity}<br>
@@ -434,7 +435,7 @@ function book_save() {
             let message = `
                 Booking created successfully<br>
                 Booking ID: <span id="booking-id" class="highlight-id">${uniqueID}</span>
-                <button class="copy-button" data-target-id="booking-id">Copy</button><br>
+                <button class="copy-button" data-target-id="booking-id" id="copied">Copy</button><br>
                 Name: ${name}<br>
                 Email: ${email}<br>
                 Date Booked: ${entrydate}<br>

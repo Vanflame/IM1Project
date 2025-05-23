@@ -27,6 +27,7 @@ function showModal(title, messageHTML) {
             const targetId = button.getAttribute("data-target-id");
             const textToCopy = document.getElementById(targetId).textContent;
             navigator.clipboard.writeText(textToCopy).then(() => {
+
                 alert(`Copied: ${textToCopy}`);
             }).catch(err => {
                 alert("Failed to copy text: " + err);
