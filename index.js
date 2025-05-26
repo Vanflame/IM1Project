@@ -327,7 +327,7 @@ function update_order(uniqueID, updatedData) {
                 update(orderRef, updatedData)
                     .then(() => {
                         console.log("Order updated successfully");
-                        showModal("Order Updated", `Order updated successfully!\nOrder ID: ${orderKey}\nName: ${updatedData.Name}\nFood: ${updatedData.FoodName}\nQuantity: ${updatedData.Quantity}\nTotal: ${updatedData.Total}`);
+                        showModal("Order Updated!", `Order updated successfully!\nOrder ID: ${orderKey}\nName: ${updatedData.Name}\nFood: ${updatedData.FoodName}\nQuantity: ${updatedData.Quantity}\nTotal: ${updatedData.Total}`);
                     })
                     .catch(error => {
                         console.log("Error updating order: " + error.message);
@@ -352,12 +352,18 @@ function delete_order(uniqueID) {
         if (snapshot.exists()) {
             let orders = snapshot.val();
             let orderKey = Object.keys(orders).find(key => orders[key].OrderID === uniqueID);
+            let deleteorder = `
+              Order deleted successfully<br>
+              Order ID: ${orders[orderKey].OrderID}</span><br>
+              Name: ${orders[orderKey].Name}<br>
+
+    `;
 
             if (orderKey) {
                 remove(ref(db, `Orders/${orderKey}`))
                     .then(() => {
                         console.log(`Order deleted successfully!\nOrder ID: ${orders[orderKey].OrderID}\nName: ${orders[orderKey].Name}`);
-                        showModal("Order Deleted", `Order deleted successfully!\nOrder ID: ${orders[orderKey].OrderID}\nName: ${orders[orderKey].Name}`);
+                        showModal("Order Deleted!", deleteorder);
                     })
                     .catch(error => {
                         console.log("Error deleting order: " + error.message);
@@ -505,9 +511,22 @@ function update_booking(uniqueID, updatedData) {
                 const bookingRef = ref(db, `Booking/${bookingKey}`);
 
                 return update(bookingRef, updatedData)
+
+
                     .then(() => {
+                        let updatenotif = `
+                        Booking updated successfully<br>
+                        Booking ID: <span id="booking-id" class="highlight-id">${uniqueID}</span>
+                        <button class="copy-button" data-target-id="booking-id" id="copied">Copy</button><br>
+                        Name: ${updatedData.Name}<br>
+                        Email: ${updatedData.Email}<br>
+                        Date Booked: ${updatedData.Date}<br>
+                        Total Guests: ${updatedData.Guests}<br>
+                        <div class="copy-reminder">Please copy and save your Booking ID for your reference.</div>
+                    `;
+
                         console.log("Booking updated successfully");
-                        showModal("Booking Updated", `Booking updated successfully!\nBooking ID: ${bookingKey}\nName: ${updatedData.Name}\nEmail: ${updatedData.Email}\nDate Booked: ${updatedData.Date}\nTotal Guests: ${updatedData.Guests}`);
+                        showModal("Booking Updated!", updatenotif);
                     })
                     .catch(error => {
                         console.log("Error updating booking: " + error.message);
@@ -535,15 +554,23 @@ function delete_booking(uniqueID) {
     const bookingRef = ref(db, 'Booking/');
 
     get(bookingRef).then((snapshot) => {
+
+
         if (snapshot.exists()) {
             let booking = snapshot.val();
             let bookingKey = Object.keys(booking).find(key => booking[key].BookingID === uniqueID);
 
+            let deletebooking = `
+              Booking deleted successfully<br>
+              Booking ID: ${booking[bookingKey].BookingID}</span><br>
+              Name: ${booking[bookingKey].Name}<br>
+    `;
+
             if (bookingKey) {
                 remove(ref(db, `Booking/${bookingKey}`))
                     .then(() => {
-                        console.log(`Order deleted successfully!\nBooking ID: ${booking[bookingKey].BookingID}\nName: ${booking[bookingKey].Name}`)
-                        showModal("Order Deleted", `Order deleted successfully!\nBooking ID: ${booking[bookingKey].BookingID}\nName: ${booking[bookingKey].Name}`);
+                        console.log(`Booking deleted successfully!\nBooking ID: ${booking[bookingKey].BookingID}\nName: ${booking[bookingKey].Name}`)
+                        showModal("Booking Deleted!", deletebooking);
                     })
                     .catch(error => {
                         console.log("Error deleting booking: " + error.message);
