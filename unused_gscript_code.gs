@@ -170,3 +170,149 @@ for (var key in dataOrder) {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+Improved
+Improved
+Improved
+Improved
+Improved
+Improved
+
+function getAllData() {
+    var sheetbook = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("BOOKINGS");
+    var sheetorder = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("ORDERS");
+
+    var firebaseUrlBook = "https://im1project-default-rtdb.asia-southeast1.firebasedatabase.app/Booking.json"; 
+    var responseBook = UrlFetchApp.fetch(firebaseUrlBook);
+    Logger.log(responseBook.getContentText());
+    var dataBook = JSON.parse(responseBook.getContentText());
+
+    var firebaseUrlOrder = "https://im1project-default-rtdb.asia-southeast1.firebasedatabase.app/Orders.json";
+    var responseOrder = UrlFetchApp.fetch(firebaseUrlOrder);
+    Logger.log(responseOrder.getContentText());
+    var dataOrder = JSON.parse(responseOrder.getContentText());
+
+    var existingDatabook = sheetbook.getDataRange().getValues(); 
+    var existingDataOrder = sheetorder.getDataRange().getValues();
+
+    var headersbook = ["DATE", "TIME","BOOKINGID", "NAME", "EMAIL", "BOOK DATE", "TOTAL GUEST","TYPE","DATE CHANGE", "TIME CHANGE"];
+    var headersorder = ["DATE", "TIME","ORDERID", "NAME", "ITEM", "PRICE", "QUANTITY", "TOTAL", "TYPE", "DATE CHANGE", "TIME CHANGE"];
+
+    if (existingDatabook.length === 0) {
+        sheetbook.appendRow(headersbook); 
+    }
+    if (existingDataOrder.length === 0) {
+        sheetorder.appendRow(headersorder);
+    }
+
+    // 🔥 Step 1: Remove Missing Entries
+    deleteMissingRows(sheetbook, existingDatabook, dataBook);
+    deleteMissingRows(sheetorder, existingDataOrder, dataOrder);
+
+    // 🔥 Step 2: **Force Fresh Data Fetch Before Updates**
+    existingDatabook = sheetbook.getDataRange().getValues();
+    existingDataOrder = sheetorder.getDataRange().getValues();
+
+    var newBookingEntries = [];
+    var newOrderEntries = [];
+
+    // 🔥 Step 3: Update Existing Entries Before Adding New Ones
+    for (var key in dataBook) {
+        var row = dataBook[key];
+        var rowDataBook = [row.Datestamp, row.Timestamp,row.BookingID, row.Name, row.Email, row.Date, row.Guests, row.Type, row.DatestampChange, row.TimestampChange];
+
+        var rowIndex = existingDatabook.findIndex(existingRow => Array.isArray(existingRow) && existingRow[2] === rowDataBook[2]);
+
+        if (rowIndex !== -1) {
+            sheetbook.getRange(rowIndex + 1, 1, 1, rowDataBook.length).setValues([rowDataBook]); 
+        } else {
+            newBookingEntries.push(rowDataBook);
+        }
+    }
+
+    for (var key in dataOrder) {
+        var row = dataOrder[key];
+        var rowDataOrder = [row.Datestamp, row.Timestamp,row.OrderID, row.Name, row.FoodName, row.Price, row.Quantity, row.Total, row.Type, row.DatestampChange, row.TimestampChange];
+
+        var rowIndex = existingDataOrder.findIndex(existingRow => Array.isArray(existingRow) && existingRow[2] === rowDataOrder[2]);
+
+        if (rowIndex !== -1) {
+            sheetorder.getRange(rowIndex + 1, 1, 1, rowDataOrder.length).setValues([rowDataOrder]); 
+        } else {
+            newOrderEntries.push(rowDataOrder);
+        }
+    }
+
+    // 🔥 Step 4: Append New Entries After Updates
+    newBookingEntries.reverse().forEach((entry) => {
+    var existingRows = sheetbook.getDataRange().getValues(); // Fetch current sheet data
+    var exists = existingRows.some(row => row[2] === entry[2]); // Check if BookingID exists
+
+    if (!exists) {
+        var lastRow = sheetbook.getLastRow() + 1;
+        sheetbook.getRange(lastRow, 1, 1, entry.length).setValues([entry]);
+    }
+});
+
+newOrderEntries.reverse().forEach((entry) => {
+    var existingRows = sheetorder.getDataRange().getValues();
+    var exists = existingRows.some(row => row[2] === entry[2]); // Check if OrderID exists
+
+    if (!exists) {
+        var lastRow = sheetorder.getLastRow() + 1;
+        sheetorder.getRange(lastRow, 1, 1, entry.length).setValues([entry]);
+    }
+});
+
+    Logger.log("Data successfully fetched, updated, and duplicates removed!");
+}
+
+// 🔹 **Improved Deletion Function**
+function deleteMissingRows(sheet, existingData, firebaseData) {
+    if (!firebaseData || Object.keys(firebaseData).length === 0) {
+        Logger.log("No valid Firebase data found, skipping deletion.");
+        return;
+    }
+
+    var rowsToDelete = [];
+
+    for (var i = existingData.length - 1; i > 0; i--) { 
+        let rowName = existingData[i][2]; 
+
+        // ✅ Compare existing row against Firebase data
+        let matchingEntry = Object.values(firebaseData).find(row => row.BookingID === rowName || row.OrderID === rowName);
+
+        if (!matchingEntry) {
+            rowsToDelete.push(i + 1); // Row should be removed only if it no longer exists in Firebase
+        } else {
+            // ✅ Prevent deletion if Firebase entry is **identical** to existing row
+            let rowData = existingData[i].slice(0, matchingEntry.length); // Get only relevant columns
+            let firebaseDataArray = Object.values(matchingEntry).slice(0, matchingEntry.length);
+
+            if (JSON.stringify(rowData) === JSON.stringify(firebaseDataArray)) {
+                Logger.log(`Skipping deletion for unchanged entry: ${rowName}`);
+                continue;
+            }
+        }
+    }
+
+    // ✅ Batch delete rows in **reverse order** to prevent shifting issues
+    rowsToDelete.sort((a, b) => b - a);
+    rowsToDelete.forEach(rowIndex => {
+        sheet.deleteRow(rowIndex);
+        Logger.log(`Deleted row: ${rowIndex}`);
+    });
+
+    Logger.log("Deletion complete. Only changed entries were removed.");
+}

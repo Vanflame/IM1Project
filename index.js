@@ -78,10 +78,22 @@ document.getElementById("save-button").addEventListener("click", () => {
     let uniqueID = document.getElementById("idtrack").value;
     let now = new Date();
 
+    //formatting time
+    let formattedTime = now.getHours().toString().padStart(2, '0') + ":" +
+        now.getMinutes().toString().padStart(2, '0') + ":" +
+        now.getSeconds().toString().padStart(2, '0');
+
+    // formatting date
+    let formattedDate = (now.getMonth() + 1).toString().padStart(2, '0') + "/" +
+        now.getDate().toString().padStart(2, '0') + "/" +
+        now.getFullYear();
+
     update_booking(uniqueID, {
+
+
         TimestampNumeric: now, // ✅ Store timestamp in milliseconds
-        DatestampChange: new Date(now).toLocaleDateString("en-US"),
-        TimestampChange: new Date(now).toLocaleTimeString("en-US", { hour12: false }),
+        DatestampChange: formattedDate,
+        TimestampChange: formattedTime,
         Type: "Edited Booking",
         Name: name,
         Email: email,
