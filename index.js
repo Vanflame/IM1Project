@@ -230,7 +230,7 @@ function order_save() {
         }
 
         // ✅ Proceed with placing a new order
-        let orderRef = ref(db, 'Orders/' + name);
+        let orderRef = ref(db, 'Orders/' + (name + uniqueID));
 
         let orderData = {
             DateandTimestamp: formattedDate + formattedTime,
@@ -421,7 +421,7 @@ function book_save() {
     let formattedDate = (now.getMonth() + 1).toString().padStart(2, '0') + "/" +
         now.getDate().toString().padStart(2, '0') + "/" +
         now.getFullYear();
-    const ordersRef = ref(db, 'Booking/' + name);
+    const bookingRef = ref(db, 'Booking/' + (email));
     let bookingData = {
         DateandTimestamp: formattedDate + formattedTime,
         BookingID: uniqueID,
@@ -436,7 +436,7 @@ function book_save() {
         TimestampChange: formattedTime
     };
 
-    set(ordersRef, bookingData)
+    set(bookingRef, bookingData)
         .then(() => {
             let message = `
                 Booking created successfully<br>
