@@ -755,6 +755,14 @@ footer {
         height: 110vh;
     }
 
+    #track .booking_data {
+        height: 48vh;
+    }
+
+    #track .order_data {
+        height: 50vh;
+    }
+
 
 }
 
