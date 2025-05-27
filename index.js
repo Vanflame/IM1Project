@@ -421,7 +421,7 @@ function book_save() {
     let formattedDate = (now.getMonth() + 1).toString().padStart(2, '0') + "/" +
         now.getDate().toString().padStart(2, '0') + "/" +
         now.getFullYear();
-    const bookingRef = ref(db, 'Booking/' + (email));
+    const bookingRef = ref(db, 'Booking/' + (name + uniqueID));
     let bookingData = {
         DateandTimestamp: formattedDate + formattedTime,
         BookingID: uniqueID,
