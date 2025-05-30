@@ -221,6 +221,14 @@ function order_save() {
 
     let totalPrice = foodPrice * quantity;
     let uniqueID = "QR" + Math.floor(100000 + Math.random() * 900000);
+    
+    const qrContent = uniqueID;
+const qrContainer = document.createElement("div");
+new QRCode(qrContainer, {
+    text: qrContent,
+    width: 200,
+    height: 200
+});
 
     const ordersRef = ref(db, 'Orders/');
 
@@ -266,11 +274,12 @@ function order_save() {
                     Order placed successfully<br>
                     Order ID: <span id="order-id" class="highlight-id">${uniqueID}</span>
                     <button class="copy-button" data-target-id="order-id" id="copied">Copy</button><br>
+                    ${qrContainer.outerHTML}
                     Name: ${name}<br>
                     Food: ${foodName}<br>
                     Quantity: ${quantity}<br>
                     Total: ${totalPrice}<br>
-                    <div class="copy-reminder">Please copy and save your Order ID for your reference.</div>
+                    <div class="copy-reminder">Please copy and save your Order ID or your QRcode for your reference.</div>
                 `;
                 console.log(message);
                 showModal("Order Confirmation", message);
@@ -429,6 +438,16 @@ function book_save() {
         now.getMinutes().toString().padStart(2, '0') + ":" +
         now.getSeconds().toString().padStart(2, '0');
 
+    //Qr generater//
+     const qrContent = uniqueID;
+const qrContainer = document.createElement("div");
+new QRCode(qrContainer, {
+    text: qrContent,
+    width: 200,
+    height: 200
+});
+
+
     // formatting date
     let formattedDate = (now.getMonth() + 1).toString().padStart(2, '0') + "/" +
         now.getDate().toString().padStart(2, '0') + "/" +
@@ -454,6 +473,7 @@ function book_save() {
                 Booking created successfully<br>
                 Booking ID: <span id="booking-id" class="highlight-id">${uniqueID}</span>
                 <button class="copy-button" data-target-id="booking-id" id="copied">Copy</button><br>
+                ${qrContainer.outerHTML}
                 Name: ${name}<br>
                 Email: ${email}<br>
                 Date Booked: ${entrydate}<br>

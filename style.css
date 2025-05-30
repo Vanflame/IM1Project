@@ -49,6 +49,42 @@ body {
     padding: 0;
 }
 
+.Loader {
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #252525;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeOut 2s forwards;
+  animation-delay: 5s;
+  z-index: 9999;
+}
+
+.LoaderLogo{
+     animation: SlideDown 2s forwards;
+     position: fixed;
+     top: 100%;
+}
+
+
+/*loader animation*/
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes SlideDown{
+    to{
+        top: 10%
+    }
+    
+}
+
 /* Header */
 header {
     display: flex;
@@ -83,6 +119,7 @@ header {
     font-family: 'Poppins', Arial, sans-serif;
     gap: 2rem;
     letter-spacing: 0.1rem;
+    z-index: 2;
 
 }
 
@@ -155,6 +192,7 @@ section {
     max-width: 800px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
 }
 
 
@@ -613,6 +651,7 @@ footer {
     margin-bottom: 2rem;
     margin-top: 1rem;
     display: none;
+    overflow: scroll;
 }
 
 .booking_data span {
@@ -640,6 +679,7 @@ footer {
     margin-bottom: 2rem;
     margin-top: 1rem;
     display: none;
+    overflow: scroll;
 }
 
 #delete-button-order {
