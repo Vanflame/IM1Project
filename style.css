@@ -70,6 +70,10 @@ body {
      top: 100%;
 }
 
+.Loader h3{
+    color: var(--white-primary-text)
+}
+
 
 /*loader animation*/
 @keyframes fadeOut {
