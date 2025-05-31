@@ -8,6 +8,12 @@ document.querySelectorAll(".hover").forEach(item => {
     });
 });
 
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+    }, 8000); // Match delay in animation
+  });
+
 
 function calculateTotal() {
     let foodItem = document.getElementById("food-item");
