@@ -123,7 +123,6 @@ header {
     font-family: 'Poppins', Arial, sans-serif;
     gap: 2rem;
     letter-spacing: 0.1rem;
-    z-index: 2;
 
 }
 
@@ -167,7 +166,7 @@ header {
 }
 
 /* Responsive Menu */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 999px) {
     .nav-menu {
         flex-direction: column;
         display: none;
@@ -196,7 +195,6 @@ section {
     max-width: 800px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
 }
 
 
@@ -655,7 +653,6 @@ footer {
     margin-bottom: 2rem;
     margin-top: 1rem;
     display: none;
-    overflow: scroll;
 }
 
 .booking_data span {
@@ -683,7 +680,6 @@ footer {
     margin-bottom: 2rem;
     margin-top: 1rem;
     display: none;
-    overflow: scroll;
 }
 
 #delete-button-order {
@@ -728,8 +724,8 @@ footer {
     }
 
     .masking_blur div img {
-        width: 25rem;
-        height: 25rem;
+        width: 18rem;
+        height: 18rem;
 
     }
 
@@ -812,6 +808,15 @@ footer {
 
 
 
+@media (max-width: 1000px) {
+    .masking_blur div img {
+        width: 15rem;
+        height: 15rem;
+
+    }
+
+}
+
 @media (max-width: 760px) {
 
     header {
@@ -819,8 +824,8 @@ footer {
     }
 
     .food_image {
-        padding-top: 1rem;
-        height: 55 rem;
+        padding-top: 5rem;
+        height: 65rem;
     }
 
     .food_image_text {
@@ -839,8 +844,8 @@ footer {
     }
 
     .masking_blur div img {
-        width: 10rem;
-        height: 10rem;
+        width: 14rem;
+        height: 14rem;
         border-radius: 2rem;
     }
 
